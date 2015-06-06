@@ -1,6 +1,6 @@
 (function(angular){
     var ItemFactory = function($resource){
-        resource $resource('/items/:id', {
+        return $resource('/items/:id', {
             id: '@id'
         }, {
             update: {
