@@ -19,6 +19,11 @@ public class ItemController {
         return repo.findAll();
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public Item getItem(@PathVariable Integer id){
+        return repo.findOne(id);
+    }
+
     @RequestMapping(method = RequestMethod.POST)
     public Item addItem(@RequestBody Item item){
         item.setId(null);
