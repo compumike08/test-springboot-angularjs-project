@@ -39,14 +39,15 @@
             }
         });
 
-        $scope.addPerson = function(firstName, lastName){
+        $scope.addPerson = function(person){
             new Person({
-                firstName: firstName,
-                lastName: lastName
+                firstName: person.firstName,
+                lastName: person.lastName
             }).$save(function(person){
                 $scope.persons.push(person);
             });
-            $scope.newPerson = "";
+            $scope.newPerson.firstName = "";
+            $scope.newPerson.lastName = "";
         };
 
         $scope.updatePerson = function(person){
