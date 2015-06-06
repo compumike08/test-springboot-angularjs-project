@@ -29,6 +29,41 @@
         };
     };
 
+
+    var PersonController = function($scope, Person){
+        Person.query(function(response){
+            if(response){
+                $scope.persons = response;
+            }else{
+                $scope.persons = [];
+            }
+        });
+
+        $scope.addPerson = function(firstName, lastName){
+            new Person({
+                firstName: firstName,
+                lastName: lastName
+            }).$save(function(person){
+                $scope.persons.push(person);
+            });
+            $scope.newPerson = "";
+        };
+
+        $scope.updatePerson = function(person){
+            person.$update();
+        };
+
+        $scope.deletePerson = function(person){
+            person.$remove(function(){
+                $scope.persons.splice($scope.persons.indexOf(person), 1);
+            });
+        };
+    };
+
+
     AppController.$inject = ['$scope', 'Item'];
     angular.module("myApp.controllers").controller("AppController", AppController);
+
+    PersonController.$inject = ['$scope', 'Person'];
+    angular.module("myApp.controllers").controller("PersonController", PersonController);
 }(angular));
