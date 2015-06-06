@@ -12,6 +12,22 @@
         });
     };
 
+    var PersonFactory = function($resource){
+        return $resource('/persons/:id', {
+            id: '@id'
+        }, {
+            update: {
+                method: "PUT"
+            },
+            remove: {
+                method: "DELETE"
+            }
+        });
+    };
+
     ItemFactory.$inject = ['$resource'];
     angular.module("myApp.services").factory("Item", ItemFactory);
+
+    PersonFactory.$inject = ['$resource'];
+    angular.module("myApp.services").factory("Person", PersonFactory);
 }(angular));
