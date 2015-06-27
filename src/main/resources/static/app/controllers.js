@@ -8,14 +8,16 @@
             }
         });
 
-        $scope.addItem = function(description){
+        $scope.addItem = function(item){
             new Item({
-                description: description,
+                description: item.description,
+                ownedBy: item.ownedBy,
                 checked: false
             }).$save(function(item) {
                 $scope.items.push(item);
             });
-            $scope.newItem = "";
+            $scope.newItem.ownedBy = "";
+            $scope.newItem.description = "";
         };
 
         $scope.updateItem = function(item){

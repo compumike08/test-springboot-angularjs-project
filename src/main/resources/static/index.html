@@ -13,12 +13,22 @@
             </div>
             <form class="form-horizontal" role="form" ng-submit="addItem(newItem)">
                 <div class="form-group" ng-repeat="item in items">
-                    <div class="checkbox col-xs-9">
-                        <label>
-                            <input type="checkbox" ng-model="item.checked" ng-change="updateItem(item)" /> {{item.description}}
+                    <div class="col-xs-3">
+                        <label>Owned By:
+                            <input type="number" ng-model="item.ownedBy.id" ng-change="updateItem(item)" />
                         </label>
                     </div>
-                    <div class="col-xs-3">
+                    <div class="checkbox col-xs-2">
+                        <label>
+                            <input type="checkbox" ng-model="item.checked" ng-change="updateItem(item)" />
+                        </label>
+                    </div>
+                    <div class="col-xs-5">
+                        <label>Description:
+                            <input type="text" ng-model="item.description" ng-change="updateItem(item)" />
+                        </label>
+                    </div>
+                    <div class="col-xs-2">
                         <button class="pull-right btn btn-danger" type="button" title="Delete"
                                 ng-click="deleteItem(item)">
                             <span class="glyphicon glyphicon-trash"></span>
@@ -28,13 +38,22 @@
 
                 <hr />
 
-                <div class="input-group">
-                    <input type="text" class="form-control" ng-model="newItem" placeholder="Enter the description..." />
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="submit" ng-disabled="!newItem" title="Add">
+                <div class="form-group">
+                    <div class="col-xs-3">
+                        <label>Owned By:
+                            <input type="number" ng-model="newItem.ownedBy" />
+                        </label>
+                    </div>
+                    <div class="col-xs-7">
+                        <label>Description:
+                            <input type="text" ng-model="newItem.description" placeholder="Enter the description..." />
+                        </label>
+                    </div>
+                    <div class="col-xs-2">
+                        <button class="pull-right btn btn-primary" type="submit" ng-disabled="!newItem.ownedBy && !newItem.description" title="Add">
                             <span class="glyphicon glyphicon-plus"></span>
                         </button>
-                    </span>
+                    </div>
                 </div>
             </form>
         </div>
@@ -48,6 +67,11 @@
             </div>
             <form class="form-horizontal" role="form" ng-submit="addPerson(newPerson)">
                 <div class="form-group" ng-repeat="person in persons">
+                    <div class="col-xs-2">
+                        <label>ID:
+                            <input type="number" readonly ng-model="person.id" />
+                        </label>
+                    </div>
                     <div class="col-xs-4">
                         <label>First Name:
                             <input type="text" ng-model="person.firstName" ng-change="updatePerson(person)" />
@@ -58,7 +82,7 @@
                             <input type="text" ng-model="person.lastName" ng-change="updatePerson(person)" />
                         </label>
                     </div>
-                    <div class="col-xs-4">
+                    <div class="col-xs-2">
                         <button class="pull-right btn btn-danger" type="button" title="Delete"
                                 ng-click="deletePerson(person)">
                             <span class="glyphicon glyphicon-trash"></span>
