@@ -14,6 +14,10 @@ public class Item {
     @Column
     private String description;
 
+    @ManyToOne
+    @JoinColumn(name = "ownedItems", nullable = false)
+    private Person ownedBy;
+
     public Integer getId(){
         return id;
     }
@@ -36,6 +40,14 @@ public class Item {
 
     public void setDescription(String description){
         this.description = description;
+    }
+
+    public Person getOwnedBy() {
+        return ownedBy;
+    }
+
+    public void setOwnedBy(Person ownedBy) {
+        this.ownedBy = ownedBy;
     }
 
 }

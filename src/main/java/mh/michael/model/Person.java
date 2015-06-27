@@ -1,6 +1,7 @@
 package mh.michael.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Person {
@@ -13,6 +14,9 @@ public class Person {
 
     @Column
     private String firstName;
+
+    @OneToMany(mappedBy = "ownedBy")
+    private List<Item> ownedItems;
 
     public Integer getId(){
         return id;
@@ -36,5 +40,13 @@ public class Person {
 
     public void setFirstName(String firstName){
         this.firstName = firstName;
+    }
+
+    public List<Item> getOwnedItems() {
+        return ownedItems;
+    }
+
+    public void setOwnedItems(List<Item> ownedItems) {
+        this.ownedItems = ownedItems;
     }
 }
