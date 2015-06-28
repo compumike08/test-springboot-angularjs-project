@@ -1,5 +1,7 @@
 package mh.michael.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -15,7 +17,9 @@ public class Person {
     @Column
     private String firstName;
 
-    @OneToMany(mappedBy = "ownedBy")
+    @OneToMany(mappedBy = "ownedBy", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @Column(nullable = true)
+    @JsonManagedReference
     private List<Item> ownedItems;
 
     public Integer getId(){
