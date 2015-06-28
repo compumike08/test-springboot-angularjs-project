@@ -1,5 +1,7 @@
 package mh.michael.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,8 +16,9 @@ public class Item {
     @Column
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "ownedItems", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "person_fk")
+    @JsonBackReference
     private Person ownedBy;
 
     public Integer getId(){
