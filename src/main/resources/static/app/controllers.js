@@ -1,5 +1,5 @@
 (function(angular){
-    var AppController = function($scope, Item) {
+    var AppController = function($scope, Item, Person) {
         Item.query(function(response) {
             if(response){
                 $scope.items = response;
@@ -9,6 +9,19 @@
         });
 
         $scope.addItem = function(item){
+            Person.get({id: item.ownedBy}, function(response){
+                var person = response;
+                new Item({
+                                ownedBy: person,
+                                description: item.description,
+                                checked: false
+                }).$save(function(item){
+                    $scope.items.push(item);
+                });
+                $scope.newItem.ownedBy = "";
+                $scope.newItem.description = "";
+            });
+            /*
             new Item({
                 description: item.description,
                 ownedBy: item.ownedBy,
@@ -18,6 +31,7 @@
             });
             $scope.newItem.ownedBy = "";
             $scope.newItem.description = "";
+            */
         };
 
         $scope.updateItem = function(item){
@@ -64,7 +78,7 @@
     };
 
 
-    AppController.$inject = ['$scope', 'Item'];
+    AppController.$inject = ['$scope', 'Item', 'Person'];
     angular.module("myApp.controllers").controller("AppController", AppController);
 
     PersonController.$inject = ['$scope', 'Person'];
