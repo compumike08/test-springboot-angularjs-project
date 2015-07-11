@@ -3,6 +3,9 @@
         return $resource('/items/:id', {
             id: '@id'
         }, {
+            create: {
+                method: "POST"
+            },
             update: {
                 method: "PUT"
             },
@@ -16,6 +19,9 @@
         return $resource('/persons/:id', {
             id: '@id'
         }, {
+            create: {
+                method: "POST"
+            },
             update: {
                 method: "PUT"
             },

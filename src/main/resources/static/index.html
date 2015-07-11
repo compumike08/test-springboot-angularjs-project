@@ -81,6 +81,14 @@
                         <label>Last Name:
                             <input type="text" ng-model="person.lastName" ng-change="updatePerson(person)" />
                         </label>
+                        <div ng-repeat="item in person.ownedItems">
+                            <div>
+                                {{item.description}}
+                            </div>
+                            <div>
+                                {{item.id}}
+                            </div>
+                        </div>
                     </div>
                     <div class="col-xs-2">
                         <button class="pull-right btn btn-danger" type="button" title="Delete"
