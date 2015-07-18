@@ -19,7 +19,6 @@ public class Person {
 
     @OneToMany(mappedBy = "ownedBy", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @Column(nullable = true)
-    @JsonManagedReference
     private List<Item> ownedItems;
 
     public Integer getId(){
@@ -52,5 +51,9 @@ public class Person {
 
     public void setOwnedItems(List<Item> ownedItems) {
         this.ownedItems = ownedItems;
+    }
+
+    public void addOwnedItem(Item ownedItem){
+        this.ownedItems.add(ownedItem);
     }
 }

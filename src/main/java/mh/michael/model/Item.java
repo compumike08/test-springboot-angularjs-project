@@ -18,7 +18,6 @@ public class Item {
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "person_fk")
-    @JsonBackReference
     private Person ownedBy;
 
     public Integer getId(){

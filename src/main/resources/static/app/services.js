@@ -31,9 +31,23 @@
         });
     };
 
+    var LinkItemToPersonFactory = function($resource){
+        return $resource('/persons/linkItem/:personId/:itemId', {
+            personId: '@personId',
+            itemId: '@itemId'
+        }, {
+            update: {
+                method: "PUT"
+            }
+        })
+    };
+
     ItemFactory.$inject = ['$resource'];
     angular.module("myApp.services").factory("Item", ItemFactory);
 
     PersonFactory.$inject = ['$resource'];
     angular.module("myApp.services").factory("Person", PersonFactory);
+
+    LinkItemToPersonFactory.$inject = ['$resource'];
+    angular.module("myApp.services").factory("LinkItemToPerson", LinkItemToPersonFactory);
 }(angular));
