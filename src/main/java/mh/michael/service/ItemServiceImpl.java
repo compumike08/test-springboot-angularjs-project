@@ -46,7 +46,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public ItemDto saveItem(ItemDto itemDto) {
+    public ItemDto saveNewItem(ItemDto itemDto) {
         Item item = personItemDtoHelper.convertItemDtoToItem(itemDto);
 
         Item savedItem = saveItemDirect(item);

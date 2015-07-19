@@ -13,7 +13,7 @@ public interface ItemService {
 
     public ItemDto getOneItem(Integer id);
 
-    public ItemDto saveItem(ItemDto itemDto);
+    public ItemDto saveNewItem(ItemDto itemDto);
 
     public Item saveItemDirect(Item item);
 

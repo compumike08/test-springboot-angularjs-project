@@ -4,7 +4,6 @@ import java.util.List;
 
 import mh.michael.service.ItemDto;
 import mh.michael.service.ItemService;
-import mh.michael.service.OwnedItemDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -32,13 +31,13 @@ public class ItemController {
     @RequestMapping(method = RequestMethod.POST)
     public ItemDto addItem(@RequestBody ItemDto itemDto){
         itemDto.setId(null);
-        return itemService.saveItem(itemDto);
+        return itemService.saveNewItem(itemDto);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ItemDto updateItem(@RequestBody ItemDto updatedItemDto, @PathVariable Integer id){
         updatedItemDto.setId(id);
-        return itemService.saveItem(updatedItemDto);
+        return itemService.saveNewItem(updatedItemDto);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
