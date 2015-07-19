@@ -37,7 +37,7 @@ public class ItemController {
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ItemDto updateItem(@RequestBody ItemDto updatedItemDto, @PathVariable Integer id){
         updatedItemDto.setId(id);
-        return itemService.saveNewItem(updatedItemDto);
+        return itemService.updateExistingItem(updatedItemDto);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

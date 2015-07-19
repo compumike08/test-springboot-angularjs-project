@@ -57,6 +57,26 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    public ItemDto updateExistingItem(ItemDto itemDto){
+        Integer itemId = itemDto.getId();
+
+        Item item = getOneItemDirect(itemId);
+
+        if(!item.equals(null)){
+            item.setChecked(itemDto.isChecked());
+            item.setDescription(itemDto.getDescription());
+        }else{
+            throw new IllegalArgumentException("Unable to find item by id from itemDto in ItemService.updateExistingItem function");
+        }
+
+        Item updatedItem = saveItemDirect(item);
+
+        ItemDto updatedItemDto = personItemDtoHelper.convertItemToItemDto(updatedItem);
+
+        return updatedItemDto;
+    }
+
+    @Override
     public Item saveItemDirect(Item item) {
         return itemRepository.saveAndFlush(item);
     }

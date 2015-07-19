@@ -15,6 +15,8 @@ public interface ItemService {
 
     public ItemDto saveNewItem(ItemDto itemDto);
 
+    public ItemDto updateExistingItem(ItemDto itemDto);
+
     public Item saveItemDirect(Item item);
 
     public void deleteItem(Integer id);

@@ -10,25 +10,25 @@ import java.util.List;
  */
 public interface PersonItemDtoHelper {
 
-    PersonDto convertPersonToPersonDto(Person person);
+    public PersonDto convertPersonToPersonDto(Person person);
 
-    Person convertPersonDtoToPerson(PersonDto personDto);
+    public Person convertPersonDtoToPerson(PersonDto personDto);
 
-    Item convertOwnedItemDtoToItem(OwnedItemDto ownedItemDto);
+    public Item convertOwnedItemDtoToItem(OwnedItemDto ownedItemDto);
 
-    List<PersonDto> convertPersonListToPersonDtoList(List<Person> allPersons);
+    public List<PersonDto> convertPersonListToPersonDtoList(List<Person> allPersons);
 
-    OwnedItemDto convertItemToOwnedItemDto(Item item);
+    public OwnedItemDto convertItemToOwnedItemDto(Item item);
 
-    Item convertItemDtoToItem(ItemDto itemDto);
+    public Item convertItemDtoToItem(ItemDto itemDto);
 
-    List<OwnedItemDto> convertItemListToOwnedItemDtoList(List<Item> allItems);
+    public Item generateNewItemFromItemDto(ItemDto itemDto);
 
-    OwnedByPersonDto convertPersonToOwnedByPersonDto(Person person);
+    public List<OwnedItemDto> convertItemListToOwnedItemDtoList(List<Item> allItems);
 
-    Person convertOwnedByPersonDtoToPerson(OwnedByPersonDto ownedByPersonDto);
+    public OwnedByPersonDto convertPersonToOwnedByPersonDto(Person person);
 
-    ItemDto convertItemToItemDto(Item item);
+    public ItemDto convertItemToItemDto(Item item);
 
-    List<ItemDto> convertItemListToItemDtoList(List<Item> allItems);
+    public List<ItemDto> convertItemListToItemDtoList(List<Item> allItems);
 }

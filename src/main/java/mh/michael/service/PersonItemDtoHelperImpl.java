@@ -179,7 +179,20 @@ public class PersonItemDtoHelperImpl implements PersonItemDtoHelper {
             item.setId(itemDto.getId());
             item.setChecked(itemDto.isChecked());
             item.setDescription(itemDto.getDescription());
-            item.setOwnedBy(convertOwnedByPersonDtoToPerson(itemDto.getOwnedBy()));
+        }else{
+            item = null;
+        }
+
+        return item;
+    }
+
+    @Override
+    public Item generateNewItemFromItemDto(ItemDto itemDto){
+        Item item = new Item();
+
+        if(itemDto != null) {
+            item.setChecked(itemDto.isChecked());
+            item.setDescription(itemDto.getDescription());
         }else{
             item = null;
         }
@@ -234,20 +247,6 @@ public class PersonItemDtoHelperImpl implements PersonItemDtoHelper {
         }
 
         return ownedByPersonDto;
-    }
-
-    @Override
-    public Person convertOwnedByPersonDtoToPerson(OwnedByPersonDto ownedByPersonDto){
-        Person person = null;
-
-        if(ownedByPersonDto != null){
-            Integer personId = ownedByPersonDto.getId();
-            person = personService.getOnePersonDirect(personId);
-        }else{
-            person = null;
-        }
-
-        return person;
     }
 
     @Override
