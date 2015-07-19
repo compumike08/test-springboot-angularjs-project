@@ -15,11 +15,11 @@ public class ItemServiceImpl implements ItemService {
     @Autowired
     private ItemRepository itemRepository;
 
+    @Autowired
     private PersonItemDtoHelper personItemDtoHelper;
 
     public ItemServiceImpl(){
         super();
-        this.personItemDtoHelper = new PersonItemDtoHelper();
     }
 
     @Override
@@ -33,7 +33,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public ItemDto getOneItem(Integer id) {
-        Item item = itemRepository.findOne(id);
+        Item item = getOneItemDirect(id);
 
         ItemDto itemDto = personItemDtoHelper.convertItemToItemDto(item);
 
@@ -49,11 +49,16 @@ public class ItemServiceImpl implements ItemService {
     public ItemDto saveItem(ItemDto itemDto) {
         Item item = personItemDtoHelper.convertItemDtoToItem(itemDto);
 
-        Item savedItem = itemRepository.saveAndFlush(item);
+        Item savedItem = saveItemDirect(item);
 
         ItemDto savedItemDto = personItemDtoHelper.convertItemToItemDto(savedItem);
 
         return savedItemDto;
+    }
+
+    @Override
+    public Item saveItemDirect(Item item) {
+        return itemRepository.saveAndFlush(item);
     }
 
     @Override

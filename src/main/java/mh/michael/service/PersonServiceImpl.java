@@ -21,11 +21,11 @@ public class PersonServiceImpl implements PersonService {
     @Autowired
     private ItemService itemService;
 
+    @Autowired
     private PersonItemDtoHelper personItemDtoHelper;
 
     public PersonServiceImpl(){
         super();
-        this.personItemDtoHelper = new PersonItemDtoHelper();
     }
 
     @Override
@@ -40,7 +40,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public PersonDto getOnePerson(Integer id){
-        Person person = personRepository.findOne(id);
+        Person person = getOnePersonDirect(id);
 
         //Convert Person object to PersonDto object
         PersonDto personDto = personItemDtoHelper.convertPersonToPersonDto(person);
@@ -76,10 +76,12 @@ public class PersonServiceImpl implements PersonService {
 
         if((person != null) && (item != null)) {
             person.addOwnedItem(item);
+            item.setOwnedBy(person);
         }else{
             throw new IllegalStateException("Either person or item could not be found for either personId or itemId provided to PersonService.linkItemToPerson.");
         }
 
+        Item savedItem = itemService.saveItemDirect(item);
         Person savedPerson = personRepository.saveAndFlush(person);
 
         PersonDto savedPersonDto = personItemDtoHelper.convertPersonToPersonDto(savedPerson);

@@ -15,6 +15,8 @@ public interface ItemService {
 
     public ItemDto saveItem(ItemDto itemDto);
 
+    public Item saveItemDirect(Item item);
+
     public void deleteItem(Integer id);
 
     public Item getOneItemDirect(Integer id);
